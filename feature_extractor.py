@@ -20,11 +20,11 @@ class FeatureExtractor(object):
         X_encoded = X_encoded.drop('Departure', axis=1)
         X_encoded = X_encoded.drop('Arrival', axis=1)
     
-        data_weather = pd.read_csv("data_holidays.csv")
-        X_weather = data_weather[['DateOfDeparture','Xmas','Xmas-1','NYD','NYD-1','Ind','Thg','Thg+1']]
+        data_holidays = pd.read_csv(os.path.join(path, "data_holidays.csv"))
+        X_holidays = data_holidays[['DateOfDeparture','Xmas','Xmas-1','NYD','NYD-1','Ind','Thg','Thg+1']]
         X_encoded = X_encoded.set_index(['DateOfDeparture'])
-        X_weather = X_weather.set_index(['DateOfDeparture'])
-        X_encoded = X_encoded.join(X_weather).reset_index()        
+        X_holidays = X_holidays.set_index(['DateOfDeparture'])
+        X_encoded = X_encoded.join(X_holidays).reset_index()        
         
         X_encoded['DateOfDeparture'] = pd.to_datetime(X_encoded['DateOfDeparture'])
         X_encoded['year'] = X_encoded['DateOfDeparture'].dt.year
