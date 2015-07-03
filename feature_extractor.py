@@ -4,6 +4,7 @@
 # ajout des variables pour les jours fériés significatifs (Xmas, NYD, Thg, Ind)
 
 import pandas as pd
+import os
 
 
 class FeatureExtractor(object):
