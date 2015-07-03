@@ -1,8 +1,3 @@
-#FE v2.0 : 
-# suppression des variables de classes (replaced by get_dummies)
-# suppression des mois et des N° de jour dans le mois (inutiles vs week et weekday)-> dim 100 vs 150
-# ajout des variables pour les jours fériés significatifs (Xmas, NYD, Thg, Ind)
-
 import pandas as pd
 import os
 

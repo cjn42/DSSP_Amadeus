@@ -1,4 +1,3 @@
-#RG V2.0 : AdaBoost sur RAndomForrest
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.base import BaseEstimator
