@@ -34,6 +34,13 @@ class FeatureExtractor(object):
         X_distance = data_distance[['Departure','Arrival','Distance']]
         X_encoded = X_encoded.merge(X_distance, how='left', left_on=['Departure','Arrival'], right_on=['Departure','Arrival'], sort=False)
 
+        #data_weather = pd.read_csv("data_weather_2.csv")
+        data_weather = pd.read_csv(os.path.join(path, "data_weather_2.csv"))
+        X_weather = data_weather[['DateOfDeparture','Departure','Fog-d','Rain-d','Hail-d','Thunder-d','Snow-d']]
+        X_encoded = X_encoded.merge(X_weather, how='left', left_on=['DateOfDeparture','Departure'], right_on=['DateOfDeparture','Departure'], sort=False)
+        X_weather = X_weather.rename(columns={'Departure': 'Arrival', 'Fog-d' :'Fog-a','Rain-d': 'Rain-a','Hail-d': 'Hail-a','Thunder-d': 'Thunder-a','Snow-d': 'Snow-a'})
+        X_encoded = X_encoded.merge(X_weather, how='left', left_on=['DateOfDeparture','Arrival'], right_on=['DateOfDeparture','Arrival'], sort=False)
+        
         X_encoded['DateOfDeparture'] = pd.to_datetime(X_encoded['DateOfDeparture'])
         X_encoded['year'] = X_encoded['DateOfDeparture'].dt.year
         X_encoded['weekday'] = X_encoded['DateOfDeparture'].dt.weekday
